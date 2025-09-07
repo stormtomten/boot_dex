@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"time"
+
+	"github.com/stormtomten/boot_dex/internal/pokeapi"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	cfg := &config{
+		Client:  pokeapi.NewClient(5*time.Second, 5*time.Minute),
+		Pokedex: map[string]pokeapi.Pokemon{},
+	}
+	startRepl(cfg)
 }
